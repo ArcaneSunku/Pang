@@ -5,18 +5,18 @@ import arcanesunku.utils.Images;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends Entity {
+public class CPU extends Entity {
 
     private BufferedImage texture;
 
-    public Player() {
-        super("Player");
+    public CPU() {
+        super("CPU");
 
-        bounds.x = 32;
+        bounds.x = (640 - 52) - bounds.width;
         bounds.y = 480 / 2 - 64;
 
-        texture = Images.loadImage("paddle.png").getSubimage(0, 0, 16, 32);
-        Images.tint(texture, new Color(205, 19, 255));
+        texture = Images.loadImage("paddle.png").getSubimage(16, 0, 16, 32);
+        Images.tint(texture, new Color(5, 51, 18));
     }
 
     @Override
