@@ -1,7 +1,9 @@
 package arcanesunku.states;
 
 import arcanesunku.Handler;
+import arcanesunku.entities.Ball;
 import arcanesunku.entities.CPU;
+import arcanesunku.entities.Entity;
 import arcanesunku.entities.Player;
 import arcanesunku.utils.Fonts;
 
@@ -9,8 +11,7 @@ import java.awt.*;
 
 public class GameState extends States {
 
-    private Player player;
-    private CPU cpu;
+    private Entity[] entities = new Entity[3];
 
     private String strpScore = "00", strcScore = "00";
     private int pScore = 0, cScore = 0;
@@ -18,8 +19,9 @@ public class GameState extends States {
     public GameState(Handler handler) {
         super(handler);
 
-        player = new Player();
-        cpu = new CPU();
+        entities[0] = new Player();
+        entities[1] = new CPU();
+        entities[2] = new Ball();
     }
 
     @Override
@@ -36,8 +38,9 @@ public class GameState extends States {
             strcScore = "" + cScore;
         }
 
-        player.update();
-        cpu.update();
+        for (int i = 0; i < entities.length; i++) {
+            entities[i].update();
+        }
     }
 
     @Override
@@ -49,8 +52,9 @@ public class GameState extends States {
         g.drawLine(game.getWidth() / 2, 0, game.getWidth() / 2, game.getHeight());
         g.drawLine(game.getWidth() / 2 + 1, 0, game.getWidth() / 2 + 1, game.getHeight());
 
-        player.render(g);
-        cpu.render(g);
+        for (int i = 0; i < entities.length; i++) {
+            entities[i].render(g);
+        }
 
         g.setColor(Color.WHITE);
         g.drawString(strpScore, 10, 42);

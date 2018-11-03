@@ -2,29 +2,29 @@ package arcanesunku;
 
 public class Handler {
 
-    private Pong game;
+    private static Pong game;
 
     public Handler(Pong game) {
         this.game = game;
     }
 
-    public String getTitle() {
+    public static String getTitle() {
         return game.getTitle();
     }
 
-    public int WindowWidth() {
+    public static int WindowWidth() {
         return game.WindowWidth();
     }
 
-    public int WindowHeight() {
+    public static int WindowHeight() {
         return game.WindowHeight();
     }
 
-    public int getWidth() {
+    public static int getWidth() {
         return game.getWidth();
     }
 
-    public int getHeight() {
+    public static int getHeight() {
         return game.getHeight();
     }
 
