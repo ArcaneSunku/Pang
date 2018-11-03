@@ -6,3 +6,7 @@ Created purely for educational purposes.
 I restarted my computer and decided to work on something from start to finish.
 Enter Pang, my Pong Clone. This is a game I will work from start to finish on
 and update the code here so anyone can see, learn and maybe improve upon it.
+
+# Update
+I will be adding comments to the code soon to make it more readable for the
+less Savvy.
