@@ -12,18 +12,21 @@ public class CPU extends Entity {
 
     public CPU() {
         super("CPU");
+        texture = Images.loadImage("paddle.png").getSubimage(16, 0, 16, 32);
 
-        bounds.x = (640 - 52) - bounds.width;
+        bounds.width = texture.getWidth() * 2;
+        bounds.height = texture.getHeight() * 4;
+
+        bounds.x = (640 - 52);
         bounds.y = 480 / 2 - 64;
 
-        texture = Images.loadImage("paddle.png").getSubimage(16, 0, 16, 32);
         Images.tint(texture, new Color(5, 51, 18));
     }
 
     public void move() {
         if (bounds.y <= 0) {
             moveDown = true;
-        } else if (bounds.y + (bounds.height * 4) >= 490) {
+        } else if (bounds.y + (bounds.height) >= 490) {
             moveDown = false;
         }
 
@@ -41,8 +44,8 @@ public class CPU extends Entity {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawRect(bounds.x, bounds.y, bounds.width * 2, bounds.height * 4);
-        g.drawImage(texture, bounds.x, bounds.y, bounds.width * 2, bounds.height * 4, null);
+//        g.setColor(Color.RED);
+//        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.drawImage(texture, bounds.x - bounds.width / 2, bounds.y, texture.getWidth() * 4, texture.getHeight() * 4, null);
     }
 }

@@ -1,6 +1,7 @@
 package arcanesunku.states;
 
 import arcanesunku.Handler;
+import arcanesunku.Timer;
 import arcanesunku.entities.Ball;
 import arcanesunku.entities.CPU;
 import arcanesunku.entities.Entity;
@@ -26,6 +27,8 @@ public class GameState extends States {
 
     @Override
     public void update() {
+        Timer.update();
+        
         if (pScore < 10)
             strpScore = "0" + pScore;
         else {

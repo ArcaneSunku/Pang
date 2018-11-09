@@ -125,6 +125,7 @@ public class Pong extends Canvas implements Runnable {
     }
 
     private void update(double dt) {
+        Timer.gameTime = dt;
         input.update();
 
         if (States.getState() != null)
