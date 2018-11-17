@@ -31,6 +31,8 @@ public class Pong extends Canvas implements Runnable {
         setMinimumSize(dim);
         setMaximumSize(dim);
         setPreferredSize(dim);
+
+        System.out.println();
     }
 
     public synchronized void start() {
@@ -126,6 +128,8 @@ public class Pong extends Canvas implements Runnable {
 
     private void update(double dt) {
         Timer.gameTime = dt;
+        Handler.setSeed(System.nanoTime());
+
         input.update();
 
         if (States.getState() != null)

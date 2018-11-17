@@ -24,8 +24,12 @@ public abstract class Entity {
         return bounds;
     }
 
-    public boolean hasCollided(Rectangle other) {
-        return this.bounds.intersects(other);
+    public boolean hasCollided(Entity other) {
+        return bounds.intersects(other.getBounds());
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

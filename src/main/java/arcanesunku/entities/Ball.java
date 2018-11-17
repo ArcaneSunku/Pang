@@ -1,6 +1,8 @@
 package arcanesunku.entities;
 
 import arcanesunku.Handler;
+import arcanesunku.Timer;
+import arcanesunku.states.GameState;
 import arcanesunku.utils.Images;
 
 import java.awt.*;
@@ -9,6 +11,7 @@ import java.awt.image.BufferedImage;
 public class Ball extends Entity {
 
     private BufferedImage texture;
+    private int xMomen, yMomen;
     private boolean isMoving = false;
 
     public Ball() {
@@ -23,7 +26,37 @@ public class Ball extends Entity {
 
     @Override
     public void update() {
+        if (bounds.x <= 0 || bounds.x >= Handler.getWidth() - bounds.width)
+            xMomen = -xMomen;
+        else if (bounds.y <= 0 || bounds.y >= Handler.getHeight() - bounds.height)
+            yMomen = -yMomen;
 
+        if (Timer.getSeconds() >= 1 && !isMoving) {
+            xMomen = Handler.nextInt(4 + 1 + 4) - 4;
+            yMomen = Handler.nextInt(4 + 1 + 4) - 4;
+
+            if (xMomen == 0) {
+                xMomen = Handler.nextInt(4 + 1 + 4) - 4;
+                return;
+            }
+
+            if (yMomen == 0) {
+                yMomen = Handler.nextInt(4 + 1 + 4) - 4;
+            }
+
+            bounds.x += xMomen;
+            bounds.y += yMomen;
+            isMoving = true;
+        }
+
+        for (Entity e : GameState.gameEntities) {
+            if (hasCollided(e) && !e.equals(this)) {
+                xMomen = -xMomen;
+            }
+        }
+
+        bounds.x += xMomen;
+        bounds.y += yMomen;
     }
 
     @Override

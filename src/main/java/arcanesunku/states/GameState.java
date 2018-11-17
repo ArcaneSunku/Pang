@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class GameState extends States {
 
-    private Entity[] entities = new Entity[3];
+    public static Entity[] gameEntities = new Entity[3];
 
     private String strpScore = "00", strcScore = "00";
     private int pScore = 0, cScore = 0;
@@ -20,15 +20,15 @@ public class GameState extends States {
     public GameState(Handler handler) {
         super(handler);
 
-        entities[0] = new Player();
-        entities[1] = new CPU();
-        entities[2] = new Ball();
+        gameEntities[0] = new Player();
+        gameEntities[1] = new CPU();
+        gameEntities[2] = new Ball();
     }
 
     @Override
     public void update() {
         Timer.update();
-        
+
         if (pScore < 10)
             strpScore = "0" + pScore;
         else {
@@ -41,8 +41,8 @@ public class GameState extends States {
             strcScore = "" + cScore;
         }
 
-        for (int i = 0; i < entities.length; i++) {
-            entities[i].update();
+        for (int i = 0; i < gameEntities.length; i++) {
+            gameEntities[i].update();
         }
     }
 
@@ -55,9 +55,13 @@ public class GameState extends States {
         g.drawLine(game.getWidth() / 2, 0, game.getWidth() / 2, game.getHeight());
         g.drawLine(game.getWidth() / 2 + 1, 0, game.getWidth() / 2 + 1, game.getHeight());
 
-        for (int i = 0; i < entities.length; i++) {
-            entities[i].render(g);
+        for (int i = 0; i < gameEntities.length; i++) {
+            gameEntities[i].render(g);
         }
+
+
+        g.setColor(new Color(66, 152, 194));
+        g.drawString(Timer.getTimeSM(), 80, 42);
 
         g.setColor(Color.WHITE);
         g.drawString(strpScore, 10, 42);

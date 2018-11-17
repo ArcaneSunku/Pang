@@ -44,5 +44,21 @@ public class Timer {
         return h;
     }
 
+    public static String getTimeSM() {
+        String sec = "", min = "";
+
+        if (s < 10)
+            sec = "0" + s;
+        else
+            sec = "" + s;
+
+        if (m < 10)
+            min = "0" + m;
+        else
+            min = "" + m;
+
+        return min + ":" + sec;
+    }
+
 
 }
