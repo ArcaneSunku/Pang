@@ -1,17 +1,19 @@
 package arcanesunku.entities;
 
 import arcanesunku.Handler;
+import arcanesunku.InputHandler;
 import arcanesunku.Timer;
 import arcanesunku.states.GameState;
 import arcanesunku.utils.Images;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Ball extends Entity {
 
     private BufferedImage texture;
-    private int xMomen, yMomen;
+    private double xMomen, yMomen;
     private boolean isMoving = false;
 
     public Ball() {
@@ -26,12 +28,12 @@ public class Ball extends Entity {
 
     @Override
     public void update() {
-        if (bounds.x <= 0 || bounds.x >= Handler.getWidth() - bounds.width)
+        if (bounds.x <= 0 || bounds.x + bounds.width >= Handler.getWidth())
             xMomen = -xMomen;
-        else if (bounds.y <= 0 || bounds.y >= Handler.getHeight() - bounds.height)
+        else if (bounds.y <= 0 || bounds.y + bounds.height >= Handler.getHeight())
             yMomen = -yMomen;
 
-        if (Timer.getSeconds() >= 1 && !isMoving) {
+        if ((Timer.getSeconds() >= 1 || InputHandler.keyJustPressed(KeyEvent.VK_SPACE)) && !isMoving) {
             xMomen = Handler.nextInt(4 + 1 + 4) - 4;
             yMomen = Handler.nextInt(4 + 1 + 4) - 4;
 
@@ -50,8 +52,14 @@ public class Ball extends Entity {
         }
 
         for (Entity e : GameState.gameEntities) {
-            if (hasCollided(e) && !e.equals(this)) {
-                xMomen = -xMomen;
+            if (!e.equals(this) && hasCollided(e.getBounds())) {
+                double speedSeed = (xMomen * Handler.nextDouble());
+
+                if (speedSeed == 0) {
+                    speedSeed = (xMomen * Handler.nextDouble());
+                }
+
+                xMomen = -Math.abs(xMomen * ((Handler.nextInt(4 - 2) + 2) / speedSeed));
             }
         }
 

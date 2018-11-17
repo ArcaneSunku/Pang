@@ -20,6 +20,10 @@ public class Handler {
         rand.setSeed(seed);
     }
 
+    public static double nextDouble() {
+        return rand.nextDouble();
+    }
+
     public static int nextInt(int bounds) {
         return rand.nextInt(bounds);
     }
