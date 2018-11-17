@@ -8,5 +8,5 @@ Enter Pang, my Pong Clone. This is a game I will work from start to finish on
 and update the code here so anyone can see, learn and maybe improve upon it.
 
 # Update
-I will be adding comments to the code soon to make it more readable for the
+I will be adding comments to the code when complete to make it more readable for the
 less Savvy.
